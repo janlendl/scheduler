@@ -178,7 +178,7 @@ storiesOf('Button', module)
     ))
     .add('Create', () => (
       <Form 
-        interviewers={[]}
+        interviewers={ interviewers }
         onSave={ action('onSave') }
         onCancel={ action('onCancel') }
       />
@@ -187,7 +187,7 @@ storiesOf('Button', module)
       <Form 
         student='Lendl Peralta'
         interviewer={3}
-        interviewers={[]}
+        interviewers={ interviewers }
         onSave={ action('onSave') }
         onCancel={ action('onCancel') }
       />
