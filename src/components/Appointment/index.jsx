@@ -22,6 +22,7 @@ import useVisualMode from 'hooks/useVisualMode';
         interviewer
       };
       props.bookInterview(props.id, interview);
+      transition(SHOW);
     }
 
     return (
@@ -41,7 +42,6 @@ import useVisualMode from 'hooks/useVisualMode';
             <Show
                 student={props.interview.student}
                 interviewer={props.interview.interviewer}
-                // bookInterview={props.bookInterview}
             />
           )}
       </article>
