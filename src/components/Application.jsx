@@ -92,8 +92,13 @@ export default function Application(props) {
     };
 
     const appointments = {
-      
+      ...state.appointments,
+      [id]: appointment
     }
+    setState({
+      ...state,
+      appointments
+    });
   }
     
   const appointmentList = dailyAppointments.map((appointment) => {
