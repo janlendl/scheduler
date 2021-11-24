@@ -7,46 +7,6 @@ import 'components/Appointment';
 import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
-// const appointments = {
-//   "1": {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   "2": {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Lydia Miller-Jones",
-//       interviewer:{
-//         id: 3,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   },
-//   "3": {
-//     id: 3,
-//     time: "2pm",
-//   },
-//   "4": {
-//     id: 4,
-//     time: "3pm",
-//     interview: {
-//       student: "Archie Andrews",
-//       interviewer:{
-//         id: 4,
-//         name: "Cohana Roy",
-//         avatar: "https://i.imgur.com/FK8V841.jpg",
-//       }
-//     }
-//   },
-//   "5": {
-//     id: 5,
-//     time: "4pm",
-//   }
-// };
-
-
 export default function Application(props) {
 
 // pass an object to useState
@@ -94,11 +54,19 @@ export default function Application(props) {
     const appointments = {
       ...state.appointments,
       [id]: appointment
-    }
-    setState({
-      ...state,
-      appointments
-    });
+    };
+
+    return axios.put(`/api/appointments/${id}`, { interview })
+      .then(res => {
+        console.log('Status message:', res.status);
+        console.log('Data:', res.data);
+        setState({...state,appointments});
+        console.log('Appointment Created!');
+      })
+      .catch(err => {
+        console.log('ERR Status: ', err.status);
+        console.log('ERR message: ', err.message);
+      });
   }
     
   const appointmentList = dailyAppointments.map((appointment) => {
