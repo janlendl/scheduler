@@ -41,22 +41,22 @@ export default function Application(props) {
       });
     }, []);
 
-  const dailyInterviewers = getInterviewersForDay(state, state.day);
-
-  const bookInterview = (id, interview) => {
-    console.log('bookInterview Data: ',id, interview);
-
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-
-    return axios.put(`/api/appointments/${id}`, { interview })
+    
+    const bookInterview = (id, interview) => {
+      console.log('bookInterview Data: ',id, interview);
+      console.log('STATE:::', state.appointments);
+      
+      const appointment = {
+        ...state.appointments[id],
+        interview: { ...interview }
+      };
+      
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      };
+      
+      return axios.put(`/api/appointments/${id}`, { interview })
       .then(res => {
         console.log('Status message:', res.status);
         console.log('Data:', res.data);
@@ -67,18 +67,46 @@ export default function Application(props) {
         console.log('ERR Status: ', err.status);
         console.log('ERR message: ', err.message);
       });
-  }
+    }
     
-  const appointmentList = dailyAppointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
+    
+    const cancelInterview = (id, interview) => {
+      console.log('cancelInterview Data: ', id, interview);
+      
+      const appointment = {
+        ...state.appointments[id],
+        interview: null
+      }
+
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      }
+      return axios.delete(`/api/appointments/${id}`)
+      .then(res => {
+        console.log('Status message:', res.status);
+        console.log('Data:', res.data);
+        setState({...state,appointments});
+        console.log('Appointment Deleted!');
+      })
+      .catch(err => {
+        console.log('ERR Status: ', err.status);
+        console.log('ERR Message: ', err.message);
+      });
+    }
+    
+    const appointmentList = dailyAppointments.map((appointment) => {
+      const interview = getInterview(state, appointment.interview);
+      const interviewers = getInterviewersForDay(state, state.day);
     return (
       <Appointment
         key={ appointment.id }
         id={ appointment.id }
         time={ appointment.time }
         interview={ interview }
-        interviewers={ dailyInterviewers }
+        interviewers={ interviewers }
         bookInterview={ bookInterview }
+        cancelInterview={ cancelInterview }
       />
     );
   });
