@@ -28,9 +28,9 @@ export default function Application(props) {
 
   // use Promise all to get days and appointment data
     Promise.all([
-      Promise.resolve(axios.get(daysData)),
-      Promise.resolve(axios.get(apptData)),
-      Promise.resolve(axios.get(interviewersData))
+      axios.get(daysData),
+      axios.get(apptData),
+      axios.get(interviewersData)
     ]).then((all) => {
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
       console.log(all);
@@ -68,8 +68,7 @@ export default function Application(props) {
         console.log('ERR message: ', err.message);
       });
     }
-    
-    
+        
     const cancelInterview = (id, interview) => {
       console.log('cancelInterview Data: ', id, interview);
       
@@ -98,6 +97,8 @@ export default function Application(props) {
     const appointmentList = dailyAppointments.map((appointment) => {
       const interview = getInterview(state, appointment.interview);
       const interviewers = getInterviewersForDay(state, state.day);
+      console.log('GETINTERVIEWERSbyDAY:::', interviewers);
+      console.log('GETINT: ', interview);
     return (
       <Appointment
         key={ appointment.id }
