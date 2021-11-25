@@ -19,7 +19,6 @@ export function getAppointmentsForDay(state, day) {
   return appointmentData;
 }
 
-
 export function getInterviewersForDay(state, day) {
  
   const dayAppointments = [];
@@ -27,7 +26,7 @@ export function getInterviewersForDay(state, day) {
   
   for (const fromDay of state.days) {
     if (fromDay.name === day) {
-      dayAppointments.push(...fromDay.appointments);
+      dayAppointments.push(...fromDay.interviewers);
     }
   }
 
