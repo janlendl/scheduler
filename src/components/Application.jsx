@@ -66,6 +66,7 @@ export default function Application(props) {
       .catch(err => {
         console.log('ERR Status: ', err.status);
         console.log('ERR message: ', err.message);
+        return Promise.reject(err);
       });
     }
         
@@ -91,9 +92,11 @@ export default function Application(props) {
       .catch(err => {
         console.log('ERR Status: ', err.status);
         console.log('ERR Message: ', err.message);
+        return Promise.reject(err);
       });
     }
     
+  // initiate selector function
     const appointmentList = dailyAppointments.map((appointment) => {
       const interview = getInterview(state, appointment.interview);
       const interviewers = getInterviewersForDay(state, state.day);
@@ -112,6 +115,7 @@ export default function Application(props) {
     );
   });
 
+// Return Application component body
   return (
     <main className="layout">
       <section className="sidebar">
