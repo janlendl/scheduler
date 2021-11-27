@@ -10,6 +10,7 @@
   import './styles.scss';
   import useVisualMode from 'hooks/useVisualMode';
 
+
   const EMPTY = 'EMPTY';
   const SHOW = 'SHOW';
   const CREATE = 'CREATE';
