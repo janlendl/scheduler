@@ -8,6 +8,7 @@ export default function Form(props) {
   const [ interviewer, setInterviewer ] = useState(props.interviewer || null);
   const [error, setError] = useState('');
 
+  // sets everything in the form to blank
   const reset = () => {
     setStudent('');
     setInterviewer(null);
@@ -18,6 +19,7 @@ export default function Form(props) {
     props.onCancel();
   };
 
+  // edge case check if student name is blank and if interviewer is not selected
   const validate = () => {
     if (student === '') {
       setError('Student name cannot be blank');

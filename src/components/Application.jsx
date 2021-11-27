@@ -1,15 +1,13 @@
 import React from "react";
-// import axios from 'axios';
-
-import "components/Application.scss";
 import DayList from "./DayList";
-import 'components/Appointment';
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import "components/Application.scss";
+import 'components/Appointment';
 import useApplicationData from "hooks/useApplicationData";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+
 
 export default function Application(props) {
-
 
 // pass functions from useApplicationData custom hook
   const {
@@ -24,7 +22,6 @@ export default function Application(props) {
     
     // initiate selector function
     const appointmentList = dailyAppointments.map((appointment) => {
-      console.log('GETINTERVIEWERSbyDAY:::', interviewers);
       return (
         <Appointment
         key={ appointment.id }

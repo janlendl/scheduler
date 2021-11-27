@@ -43,7 +43,8 @@ export default function useApplicationData() {
       ...state.appointments[id],
       interview: { ...interview }
     };
-    
+  
+  // passes the new appointments
     const appointments = {
       ...state.appointments,
       [id]: appointment
@@ -52,9 +53,9 @@ export default function useApplicationData() {
 
     const index = state.days.findIndex(day => day.name === state.day);
     const spots = getSpots(state, state.day);
-    
-    const days = [...state.days];
 
+  // passes the new spots value to the days array
+    const days = [...state.days];
     const day = {...state.days[index], spots: spots - 1};
 
     days.splice(index, 1, day);
@@ -81,7 +82,8 @@ export default function useApplicationData() {
       ...state.appointments[id],
       interview: null
     }
-
+  
+  // passes the new appointments
     const appointments = {
       ...state.appointments,
       [id]: appointment
@@ -90,8 +92,8 @@ export default function useApplicationData() {
     const index = state.days.findIndex(day => day.name === state.day);
     const spots = getSpots(state, state.day);
     
+  // passes the new spots value to the days array
     const days = [...state.days];
-
     const day = {...state.days[index], spots: spots + 1};
 
     days.splice(index, 1, day);

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// creates a plus button if appointment is empty
 export default function Empty(props) {
   return (
     <main className="appointment__add">

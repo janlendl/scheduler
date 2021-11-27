@@ -1,4 +1,5 @@
 
+// function to grab the appointments for that day
 export function getAppointmentsForDay(state, day) {
  
   const dayAppointments = [];
@@ -19,6 +20,7 @@ export function getAppointmentsForDay(state, day) {
   return appointmentData;
 }
 
+// function to get the interviewers assigned for that day
 export function getInterviewersForDay(state, day) {
  
   const dayAppointments = [];
@@ -39,6 +41,7 @@ export function getInterviewersForDay(state, day) {
   return interviewersData;
 }
 
+// function to get the interview details
 export function getInterview(state, interview) {
   if (interview !== null) {
     const interviewID = interview.interviewer;
@@ -53,6 +56,7 @@ export function getInterview(state, interview) {
   return null;
 }
 
+//function to get the spots per day
 export function getSpots(state, day) {
   const appointmentsForDay = [];
   let spots = 0;
