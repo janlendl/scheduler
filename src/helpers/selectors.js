@@ -52,3 +52,23 @@ export function getInterview(state, interview) {
   }
   return null;
 }
+
+export function getSpots(state, day) {
+  const appointmentsForDay = [];
+  let spots = 0;
+
+  for (const dayItem of state.days) {
+    if (dayItem.name === day) {
+      appointmentsForDay.push(...dayItem.appointments);
+    }
+  }
+
+  for (const key of appointmentsForDay) {
+    console.log("::KEY:: ", key)
+    if (!state.appointments[key].interview) {
+      spots ++
+    }
+  }
+
+return spots;
+}
