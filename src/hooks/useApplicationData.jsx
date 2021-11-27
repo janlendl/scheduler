@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getSpots } from 'helpers/selectors';
 
 
 export default function useApplicationData() {
@@ -37,7 +38,7 @@ export default function useApplicationData() {
 
   const bookInterview = (id, interview) => {
     console.log('bookInterview Data: ',id, interview);  
-    
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -47,12 +48,23 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+
+
+    const index = state.days.findIndex(day => day.name === state.day);
+    const spots = getSpots(state, state.day);
     
+    const days = [...state.days];
+
+    const day = {...state.days[index], spots: spots - 1};
+
+    days.splice(index, 1, day);
+
     return axios.put(`/api/appointments/${id}`, { interview })
     .then(res => {
       console.log('Status message:', res.status);
-      console.log('Data:', res.data);
-      setState({...state,appointments});
+      console.log('Save Data:', res);
+      setState({...state,appointments, days: days});
+      console.log('APPOINTMENTS::: ', appointments);
       console.log('Appointment Created!');
     })
     .catch(err => {
@@ -74,11 +86,21 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     }
+
+    const index = state.days.findIndex(day => day.name === state.day);
+    const spots = getSpots(state, state.day);
+    
+    const days = [...state.days];
+
+    const day = {...state.days[index], spots: spots + 1};
+
+    days.splice(index, 1, day);
+
     return axios.delete(`/api/appointments/${id}`)
     .then(res => {
       console.log('Status message:', res.status);
       console.log('Data:', res.data);
-      setState({...state,appointments});
+      setState({...state,appointments, days: days});
       console.log('Appointment Deleted!');
     })
     .catch(err => {
