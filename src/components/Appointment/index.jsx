@@ -25,13 +25,14 @@
       props.interview ? SHOW: EMPTY
     );
 
-    const save = (name, interviewer) => {
+    const save = (name, interviewer,updateSpots) => {
       const interview ={
         student: name,
         interviewer
       };
       transition(SAVING);
-      props.bookInterview(props.id, interview)
+      mode === EDIT ? updateSpots = false : updateSpots = true;
+      props.bookInterview(props.id, interview, updateSpots)
         .then(() => {
           transition(SHOW)
         })
