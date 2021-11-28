@@ -36,7 +36,7 @@ export default function useApplicationData() {
   }, []);
 
 
-  const bookInterview = (id, interview) => {
+  const bookInterview = (id, interview, updateSpots = false) => {
     console.log('bookInterview Data: ',id, interview);  
 
     const appointment = {
@@ -50,15 +50,18 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-
-    const index = state.days.findIndex(day => day.name === state.day);
-    const spots = getSpots(state, state.day);
-
-  // passes the new spots value to the days array
     const days = [...state.days];
-    const day = {...state.days[index], spots: spots - 1};
-
-    days.splice(index, 1, day);
+  
+    // this checks if the mode is on EDIT, it will not update the spots
+    if (updateSpots === true) {
+      const index = state.days.findIndex(day => day.name === state.day);
+      const spots = getSpots(state, state.day);
+  
+    // passes the new spots value to the days array
+      const day = {...state.days[index], spots: spots - 1};
+  
+      days.splice(index, 1, day);
+    }
 
     return axios.put(`/api/appointments/${id}`, { interview })
     .then(res => {
