@@ -39,7 +39,7 @@
 ![img](public/images/scheduler-chart.png)
 
 # 
-## Edge case (A bit of a stretch work - not included in compass main requirements):
+## Edge case
 * An error prompt will initialize if student name is left blank 
 ![img](public/images/edge-case-studentName.png)
 * An error prompt will initialize if an interviewer is not selected
