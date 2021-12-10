@@ -53,6 +53,20 @@
 
 Install dependencies with `npm install`.
 
+### Dependencies
+[axios](https://www.npmjs.com/package/axios)\
+[classnames](https://www.npmjs.com/package/classnames)\
+[react](https://reactjs.org/)\
+[babel](https://babeljs.io/)\
+[testing-library](https://testing-library.com/)\
+[sass](https://sass-lang.com/) 
+
+
+### Test Dependencies
+[jest](https://jestjs.io/)\
+[storybook](https://storybook.js.org/)\
+[cypress](https://www.cypress.io/)
+
 ## Running Webpack Development Server
 
 ```sh

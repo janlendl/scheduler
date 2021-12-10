@@ -40,7 +40,7 @@
           console.log('Error on saving: ', err);
           transition(ERROR_SAVE, true)
         });
-    }
+    };
 
     const cancel = () => {
       transition(DELETING);
@@ -112,7 +112,7 @@
           }
 
       </article>
-    )
-  }
+    );
+  };
 
   

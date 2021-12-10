@@ -66,9 +66,7 @@ export default function useApplicationData() {
     return axios.put(`/api/appointments/${id}`, { interview })
     .then(res => {
       console.log('Status message:', res.status);
-      console.log('Save Data:', res);
       setState({...state,appointments, days: days});
-      console.log('APPOINTMENTS::: ', appointments);
       console.log('Appointment Created!');
     })
     .catch(err => {
@@ -76,7 +74,7 @@ export default function useApplicationData() {
       console.log('ERR message: ', err.message);
       return Promise.reject(err);
     });
-  }
+  };
       
   const cancelInterview = (id, interview) => {
     console.log('cancelInterview Data: ', id, interview);
@@ -84,13 +82,13 @@ export default function useApplicationData() {
     const appointment = {
       ...state.appointments[id],
       interview: null
-    }
+    };
   
   // passes the new appointments
     const appointments = {
       ...state.appointments,
       [id]: appointment
-    }
+    };
 
     const index = state.days.findIndex(day => day.name === state.day);
     const spots = getSpots(state, state.day);
@@ -116,4 +114,4 @@ export default function useApplicationData() {
   };
 
   return { state, setDay, bookInterview, cancelInterview };
-}
+};

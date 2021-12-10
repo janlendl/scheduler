@@ -17,11 +17,11 @@ export default function DayListItem(props) {
     } else {
       return <h3 className='text--light'>{ props.spots } spots remaining</h3>
     }
-  }  
+  };  
   return (
     <li className={ dayClass } onClick={() => props.setDay(props.name)} data-testid='day'>
       <h2 className='text--regular'>{ props.name }</h2>
       { formatSpots() }
     </li>
   );
-}
+};

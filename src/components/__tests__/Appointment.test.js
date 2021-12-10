@@ -13,4 +13,4 @@ describe('Appointment', () => {
     render(<Appointment />);
   });
 
-})
+});

@@ -18,7 +18,7 @@ export function getAppointmentsForDay(state, day) {
     }
   }
   return appointmentData;
-}
+};
 
 // function to get the interviewers assigned for that day
 export function getInterviewersForDay(state, day) {
@@ -39,7 +39,7 @@ export function getInterviewersForDay(state, day) {
     }
   }
   return interviewersData;
-}
+};
 
 // function to get the interview details
 export function getInterview(state, interview) {
@@ -54,7 +54,7 @@ export function getInterview(state, interview) {
     return interviewerObj;
   }
   return null;
-}
+};
 
 //function to get the spots per day
 export function getSpots(state, day) {
@@ -75,4 +75,4 @@ export function getSpots(state, day) {
   }
 
 return spots;
-}
+};

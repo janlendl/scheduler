@@ -106,6 +106,7 @@ describe('Application', () => {
 
     // Click the edit button
     fireEvent.click(getByAltText(appointment, 'Edit'));
+
     // Makes the changes by editing the name
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: { value: 'Lendl Peralta' }
@@ -113,6 +114,7 @@ describe('Application', () => {
 
     // Makes the changes by selecting a new interviewer
     fireEvent.click(getByAltText(appointment, 'Tori Malcolm'));
+
     // Save button
     fireEvent.click(getByText(appointment, 'Save'));
 
@@ -196,4 +198,4 @@ describe('Application', () => {
     expect(getByText(day, '1 spot remaining'));
   });
   
-}) 
+}); 
